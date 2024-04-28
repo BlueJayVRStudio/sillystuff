@@ -31,9 +31,9 @@ Now that we finally established hypothetical means to get between two points, we
   <img src="ttestresult.png"/>
 </p>
 
-Both the one-tail and two-tail tests were statistically significant, meaning the average number steps taken from A to H is significantly lower than that resulting from random walk. Interesting!
+Both the one-tail and two-tail tests were statistically significant, meaning the average number of steps taken from A to H is significantly lower than that resulting from random walk. Interesting!
 
-Of course, this is by no means anything extraordinary. If it takes 16 steps to get from A and H and each step takes 5 seconds, that’s almost a minute and a half before Mr. Handyman can take care of all that vomit and trash in the vicinity of node H. This is not even accounting for weird behaviors such as handymen turning back around after cleaning one item, which further adds to the time it takes for handymen to get to desired destinations. Still, it was interesting to find out that the pathing wasn’t entirely random.
+Of course, this is by no means anything extraordinary. If it takes 16 steps to get from A to H and each step takes 5 seconds, that’s almost a minute and a half before Mr. Handyman can take care of all that vomit and trash in the vicinity of node H. This is not even accounting for weird behaviors such as handymen turning back around after cleaning one item, which further adds to the time it takes for handymen to get to desired destinations. Still, it was interesting to find out that the pathing wasn’t entirely random.
 
 While checking to see if there’s any official information, I chanced upon an OpenRCT2 forum comment by one of the developers:
 
