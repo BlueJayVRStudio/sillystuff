@@ -10,6 +10,7 @@
 #         self.obj = x
 
 from enum import Enum
+import time
 
 class Color(Enum):
     Orange = 1
@@ -24,6 +25,19 @@ class Color(Enum):
     Grey = 10
 
 # Last index is top of tube
+# testtubes = [[Color.Lime, Color.Green, Color.Grey, Color.Magenta],
+#              [Color.Yellow, Color.Green, Color.Orange, Color.Cyan],
+#              [Color.Green, Color.Orange, Color.Lime, Color.Red],
+#              [Color.Blue, Color.Cyan, Color.Yellow, Color.Lime],
+#              [Color.Purple, Color.Green, Color.Magenta, Color.Grey],
+#              [Color.Cyan, Color.Grey, Color.Purple, Color.Red],
+#              [Color.Blue, Color.Yellow, Color.Magenta, Color.Red],
+#              [Color.Cyan, Color.Grey, Color.Magenta, Color.Blue],
+#              [Color.Orange, Color.Red, Color.Purple, Color.Blue],
+#              [Color.Purple, Color.Yellow, Color.Lime, Color.Orange],
+#              [],
+#              []]
+
 testtubes = [[Color.Grey, Color.Cyan, Color.Red, Color.Purple],
              [Color.Lime, Color.Magenta, Color.Yellow, Color.Cyan],
              [Color.Orange, Color.Lime, Color.Blue, Color.Cyan],
@@ -104,7 +118,55 @@ def hashstate():
         toreturn += "_," * (4-len(tube))
     return toreturn
 
-def dfs():
+bitboard = [None,0,0,0,0,0,0,0,0,0,0]
+
+# def test_set_board():
+#     global bitboard
+#     for i in range(1, 11):
+#         bitboard[i] |= 0xff
+
+def clear_board():
+    global bitboard
+    for i in range(1, 11):
+        bitboard[i] &= 0b0
+
+# operations:
+def add_color(color, index):
+    global bitboard
+    bitboard[color.value] |= (0b1 << index)
+
+# def bitwise_hash():
+#     clear_board()
+#     for i in range(0, 12):
+#         for j in range(0, len(testtubes[i])):
+#             add_color(testtubes[i][j], i*4 + j)
+#     # print(bitboard[1:11])
+#     toreturn = 0
+#     for i in range(1, 11):
+#         toreturn ^= bitboard[i]
+#     return toreturn    
+
+def bitwise_hash():
+    clear_board()
+    for i in range(0, 12):
+        for j in range(0, len(testtubes[i])):
+            add_color(testtubes[i][j], i*4 + j)
+    # print(bitboard[1:11])
+    toreturn = 1 << 256
+    for i in range(1, 11):
+        toreturn ^= bitboard[i]
+    return toreturn    
+
+max = 0
+
+def dfs(depth):
+    # if (depth == 50):
+    #     return
+    global max
+    if depth > max:
+        max = depth
+        print(max)
+
     global testtubes
     global min
     global currentbest
@@ -122,7 +184,8 @@ def dfs():
 
         return True
 
-    hashset.add(hashstate())
+    # hashset.add(hashstate())
+    hashset.add(bitwise_hash())
 
     for i in range(len(testtubes)):
         tube = testtubes[i]
@@ -149,15 +212,21 @@ def dfs():
             isNewState = None
             if islegal:
                 makemove(i, j)
-                isNewState = hashstate() not in hashset
+                # isNewState = hashstate() not in hashset
+                isNewState = bitwise_hash() not in hashset
                 makemove(j, i)
 
             if islegal and isNewState:
                 makemove(i, j)
                 currentpath.append([i, j])
-                dfs()
+                dfs(depth+1)
                 makemove(j, i)
                 currentpath.pop()
+t0 = time.time()
+dfs(0)
+if currentbest is not None:
+    print(f"min: {min}")
+    print(currentbest)
 
-dfs()
-print(currentbest.value())
+print("done!")
+print(time.time()-t0)
