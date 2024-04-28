@@ -37,13 +37,14 @@ Of course, this is by no means anything extraordinary. If it takes 16 steps to g
 
 While checking to see if there’s any official information, I chanced upon an OpenRCT2 forum comment by one of the developers:
 
-<p><small>Source - https://forums.openrct2.org/topic/999-peoples-path-finding-and-other-problems/
+ Source - https://forums.openrct2.org/topic/999-peoples-path-finding-and-other-problems/
 
-Posted March 11, 2016 - Broxzier
+ Posted March 11, 2016 - Broxzier
 
-There are places where the RCT2 AI gets stuck, and different places where the OpenRCT2 AI gets stuck. I do agree that the OpenRCT2 AI needs some more help in certain places, and the developers are well aware of it. There are plans for completely rewriting the path-finding with quite advanced algorithms already. In the second podcast, the one from December or early January, some ideas about it were mentioned.
+ There are places where the RCT2 AI gets stuck, and different places where the OpenRCT2 AI gets stuck. I do agree that the OpenRCT2 AI needs some more help in certain places, and the developers are well aware of it. There are plans for completely rewriting the path-finding with quite advanced algorithms already. In the second podcast, the one from December or early January, some ideas about it were mentioned.
 
-Handymen basically walk around randomly within their area, their code has been decompiled quite recently. Just like peep AI there are plans for improving this. This is not a simple task, so don't expect it to happen soon. Right now we mostly stuck with this behaviour and sometimes make small changes to make it more acceptable.
-I haven't experienced the often ride breakdowns myself, I think it's in line with vanila RCT2. </small></p>
+ Handymen basically walk around randomly within their area, their code has been decompiled quite recently. Just like peep AI there are plans for improving this. This is not a simple task, so don't expect it to happen soon. Right now we mostly stuck with this behaviour and sometimes make small changes to make it more acceptable.
+ 
+ I haven't experienced the often ride breakdowns myself, I think it's in line with vanila RCT2.
 
 Seeing as how this was posted almost 8 years ago, there was a reason to believe the non-randomness is introduced by the OpenRCT2 mod, so I went ahead and did the same experiment with the original RCT2. This time I ran a two-sample t-test between the previous sample and the new sample and got a p-value of 0.23. So, for now we can’t definitively say there’s been a change to the handyman path behaviors, but another way to look at this is that the original game already implemented some form TSP approximation, and I think that’s pretty cool for an early 2000s game.
